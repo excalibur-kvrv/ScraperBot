@@ -1,9 +1,8 @@
 from urllib.request import Request, urlopen
 from urllib.parse import urlparse, urljoin
-from collections import namedtuple
-from csv import reader, writer
 from bs4 import BeautifulSoup
 from random import randint
+from csv import writer
 from time import sleep
 import shutil
 import os
@@ -12,7 +11,7 @@ import os
 class UrbanOutfittersBot:
     def __init__(self, timer_range=(30, 60)):
         # @param (timer_range) : this specifies a range for randint to choose from to set a crawl delay
-        
+
         self.start_url = "https://www.urbanoutfitters.com/"
         self.headers = { "User-Agent": "Modzilla/5.0"}
         self.timer = timer_range
