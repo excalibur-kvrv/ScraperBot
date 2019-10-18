@@ -14,10 +14,10 @@ A bot to get product description, product sizes, product price from https://www.
 
     <h2> data.csv contents:- </h2>
     <ul>
-    <li>product title</li>  
-    <li>product decription</li>  
-    <li>product price</li>  
-    <li>product colors</li>
-    <li>product image url</li>
-    <li>product sizes</li>
+    <li>product title (string)</li>  
+    <li>product description (string)</li>  
+    <li>product price (string)</li>  
+    <li>product colors (array)</li>
+    <li>product image url (string)</li>
+    <li>product sizes (array)</li>
     </ul>
