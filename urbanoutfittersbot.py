@@ -4,7 +4,9 @@ from bs4 import BeautifulSoup
 from random import randint
 from csv import writer
 from time import sleep
+import socket
 import shutil
+import socks
 import os
 
 
@@ -13,7 +15,7 @@ class UrbanOutfittersBot:
         # @param (timer_range) : this specifies a range for randint to choose from to set a crawl delay
 
         self.start_url = "https://www.urbanoutfitters.com/"
-        self.headers = { "User-Agent": "Modzilla/5.0"}
+        self.headers = { "User-Agent": "Modzilla/5.0" }
         self.timer = timer_range
 
     def check_file_exists_and_return_contents(self, url):
@@ -134,7 +136,7 @@ class UrbanOutfittersBot:
         # @returns: a tuple of product description (str) and the product sizes (list)
         # 
         # This method is used to fetch product description and sizes from the product page
-      
+
         is_present, contents = self.check_file_exists_and_return_contents(url)
         if not is_present:
             sleep(randint(*self.timer))
@@ -147,11 +149,18 @@ class UrbanOutfittersBot:
         description = soup.find("div", class_="c-text-truncate__text u-break-word").find("p").get_text().strip()
         return description, product_sizes
 
-    def start(self, keep=True):
+    def start(self, keep=True, proxy=False):
         # @param (keep): if keep is set to False it will delete the cached pages stored in the scraped_pages/ directory after
         #                processing all the pages
-        # 
+        #        (proxy): if proxy is set to True it will connect to the tor network and change your ip
         # This method is used to start the bot
+        print(f"Your ip is {urlopen('http://icanhazip.com').read().decode('utf-8')}")
+
+        if proxy:
+            print(f"Connecting to tor network")
+            socks.set_default_proxy(socks.SOCKS5, "localhost", 9150)
+            socket.socket = socks.socksocket
+            print(f"Your proxy ip is {urlopen('http://icanhazip.com').read().decode('utf-8')}")
 
         print("Starting bot")
         self.fetch_internal_urls_content()
@@ -162,7 +171,7 @@ class UrbanOutfittersBot:
 if __name__ == "__main__":
     # timer_range specifies the crawl delay range for ranint to choose a random time to sleep,
     # the robots.txt file specifies a crawl delay of 60 for bots, so choose an appropriate range.
-    bot = UrbanOutfittersBot(timer_range=(30, 60))
+    bot = UrbanOutfittersBot(timer_range=(60, 80))
 
     # if keep is set to False it will delete the cached pages after processing is complete.
-    bot.start(keep=True)
+    bot.start(keep=True, proxy=True)

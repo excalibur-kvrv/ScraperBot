@@ -21,3 +21,6 @@ A bot to get product description, product sizes, product price from https://www.
     <li>product image url (string)</li>
     <li>product sizes (array)</li>
     </ul>
+
+# Other Requirements
+* To enable the proxy feature you need to ensure that you are running tor on you local computer, to download tor browser visit https://www.torproject.org/download/, once downloaded start the browser and set proxy=True while calling bot.start()
