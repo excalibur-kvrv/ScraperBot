@@ -10,11 +10,11 @@ import socks
 import os
 
 
-class UrbanOutfittersBot:
+class ScraperBot:
     def __init__(self, timer_range=(30, 60)):
         # @param (timer_range) : this specifies a range for randint to choose from to set a crawl delay
 
-        self.start_url = "https://www.urbanoutfitters.com/"
+        self.start_url = input("Enter url")
         self.headers = { "User-Agent": "Modzilla/5.0" }
         self.timer = timer_range
 
@@ -171,7 +171,7 @@ class UrbanOutfittersBot:
 if __name__ == "__main__":
     # timer_range specifies the crawl delay range for ranint to choose a random time to sleep,
     # the robots.txt file specifies a crawl delay of 60 for bots, so choose an appropriate range.
-    bot = UrbanOutfittersBot(timer_range=(60, 80))
+    bot = ScraperBot(timer_range=(60, 80))
 
     # if keep is set to False it will delete the cached pages after processing is complete.
     bot.start(keep=True, proxy=True)
