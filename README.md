@@ -9,7 +9,7 @@ A bot to get product description, product sizes, product price
 
 # Usage
 
-* run the program using `python urbanoutfittersbot.py`
+* run the program using `python scraperbot.py`
 * after running the program you will see a data.csv has been generated it contains the following data in the respective order
 
     <h2> data.csv contents:- </h2>
