@@ -1,4 +1,4 @@
-# UrbanOutfittersBot
+# ScraperBot
 A bot to get product description, product sizes, product price
 
 # Installation
